@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fitness Tracker Weight Monitor</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script type="text/javascript" src="/js/libs/d3.js"></script>
+  </head>
+  <body>
+    <h1>Weight Tracker App</h1>
+    <div id="chart"></div>
+    <ul id="measurement-list">
+    </ul>
+
+    <form class="measurement-form" id="measurement-entry">
+      <h2>New Entry</h2>
+      <input type="date" name="date" />
+      <br>
+      <input type="number" name="weight" step="0.1" min="0" />
+      <br>
+      <input type="submit" />
+    </form>
+
+    <script src="/js/libs/jquery-2.2.2.min.js"></script>
+    <script src="/js/libs/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+    <script src="/js/firebase/index.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
