@@ -8,13 +8,33 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// Initialize array of date/weight measurements
-var measurementArray = [];
+var measurementArray =[];
+var initialDataLoaded = false;
+var addedMeasurement = {};
 
 // Get Firebase reference
 var firebaseRef = firebase.database().ref();
 
-// Create new date/weight measurement
+// ON LOAD
+// --------------------
+// Get all measurements
+var displayMeasurements = function (snapshot) {
+  initialDataLoaded = true;
+  var measurements = snapshot.val() || {};
+  var parsedMeasurements = [];
+
+  Object.keys(measurements).forEach(function (measurementId) {
+    parsedMeasurements.push(measurements[measurementId]);
+  });
+
+  buildChart(parsedMeasurements);
+};
+firebaseRef.child('measurements').once('value', displayMeasurements);
+
+
+// NEW MEASUREMENT
+// --------------------
+// New measurement posted
 $('#measurement-entry').on('submit', function (e) {
   e.preventDefault();
 
@@ -24,16 +44,53 @@ $('#measurement-entry').on('submit', function (e) {
   console.log(newMeasurement);
 
   firebaseRef.child('measurements').push(newMeasurement);
+
+  firebaseRef.child('measurements').on('value', function (snapshot) {
+    var measurements = snapshot.val();
+    var parsedMeasurements = [];
+
+    Object.keys(measurements).forEach(function (measurementId) {
+      parsedMeasurements.push(measurements[measurementId]);
+    });
+    console.log(parsedMeasurements);
+    updateChart(parsedMeasurements);
+  });
+
 });
 
-// Get all measurements
-var displayMeasurements = function (snapshot) {
-  console.log('from firebase', snapshot.val());
-  var meas = snapshot.val();
-  measurementArray.push(meas);
-  return buildChart(measurementArray);
-};
-// firebaseRef.child('measurements').once('value', displayMeasurements);
 
-// Get newest measurement when added
-firebaseRef.child('measurements').on('child_added', displayMeasurements);
+
+
+
+// // Create new date/weight measurement
+// $('#measurement-entry').on('submit', function (e) {
+//   e.preventDefault();
+//
+//   var date = $('[name=date]').val();
+//   var weight = $('[name=weight]').val();
+//   var newMeasurement = {date, weight};
+//   console.log(newMeasurement);
+//
+//   firebaseRef.child('measurements').push(newMeasurement);
+// });
+//
+// var addMeasurement = function (snapshot) {
+//   addedMeasurement = snapshot.val();
+//   console.log('logged', addedMeasurement);
+//
+//   firebaseRef.child('measurements').once('value', function (snapshot) {
+//     if (initialDataLoaded) {
+//       var measurements = snapshot.val() || {};
+//       var parsedMeasurements = [];
+//
+//       Object.keys(measurements).forEach(function (measurementId) {
+//         parsedMeasurements.push(measurements[measurementId]);
+//       });
+//       console.log(parsedMeasurements);
+//       // buildChart(parsedMeasurements);
+//     }
+//   });
+// };
+//
+// // Get newest measurement when added
+// firebaseRef.child('measurements').on('child_added', addMeasurement);
