@@ -10,19 +10,31 @@ body {
 
 h1 {
   font-family: "Helvetica", sans-serif;
+  font-size: 2.5rem;
   color: #333;
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 h2 {
   font-family: "Helvetica", sans-serif;
+  font-size: 2rem;
   color: #333;
   width: 100%;
   text-align: center;
 }
 
+
+/* Sign in page and log in page */
+/* ---------------------------- */
+.sign-in-form {
+  margin: 0 auto;
+}
+
+
+/* Measurements page */
+/* ----------------- */
 #chart {
   margin-bottom: 50px;
 }
@@ -37,18 +49,27 @@ h2 {
   display: none;
 }
 
-.measurement-form, .email-password {
+.measurement-form {
+  margin-bottom: 60px;
+  min-height: 154px;
+}
+
+.measurement-form button[type="submit"] {
+  margin-top: 24px;
+}
+
+/*.measurement-form, .email-password {
   display: block;
   width: 200px;
   margin: 0 auto;
   margin-bottom: 80px;
-}
+}*/
 
-.measurement-form h2 {
+/*.measurement-form h2 {
   margin-bottom: 12px;
-}
+}*/
 
-.measurement-form input[type="date"],
+/*.measurement-form input[type="date"],
 .measurement-form input[type="number"],
 .email-password input[type="email"],
 .email-password input[type="password"] {
@@ -62,9 +83,9 @@ h2 {
   height: 18px;
   border-radius: 6px;
   box-shadow: none;
-}
+}*/
 
-.measurement-form button,
+/*.measurement-form button,
 .measurement-form input[type="submit"],
 .email-password button,
 .email-password input[type="submit"] {
@@ -79,7 +100,7 @@ h2 {
   border-radius: 6px;
   box-shadow: none;
   cursor: pointer;
-}
+}*/
 
 .measurement-form button#delete {
   background: red;
@@ -166,4 +187,21 @@ h2 {
   text-decoration: none;
   cursor: pointer;
   outline: none;
+}
+
+
+/* BEGIN MEDIA QUERIES */
+/* ------------------- */
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .measurement-form {
+    height: 320px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+  }
 }
