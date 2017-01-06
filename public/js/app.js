@@ -63,8 +63,6 @@ function buildChart (measurementArray) {
     })])
     .range([(height - (1.5*margin)), margin]);
 
-  // Creates axes on using the x and y scales above
-  // Also creates grid lines that span the width and height of the graph
   var xAxis = d3.axisBottom()
     .scale(x)
     .ticks(d3.timeMonth)
@@ -78,6 +76,7 @@ function buildChart (measurementArray) {
       return d.weight/10;
     }))
     .tickSizeInner(-(width - (3.5 * margin)));
+
 
   // Generates the fill area beneath the data line
   var area = d3.area()
@@ -218,10 +217,11 @@ function buildChart (measurementArray) {
 };
 
 function updateChart(measurementArray) {
-  console.log('chart file', measurementArray);
+  console.log('chart update', measurementArray);
   // Remove previous line and area
   d3.selectAll('path').remove();
   d3.selectAll('circle').remove();
+
   // Sort measurementArray in chronological order
   measurementArray.sort(function (a, b) {
     return new Date(a.date) - new Date(b.date);
@@ -292,19 +292,17 @@ function updateChart(measurementArray) {
     .data([measurementArray]);
 
   newLine.enter()
-      .append('path')
-      .attr('class', '.path')
-      .attr('d', line)
-      .attr('fill', 'none')
-      .attr('stroke', '#2980B9')
-      .attr('stroke-width', 3);
+    .append('path')
+    .attr('class', '.path')
+    .attr('d', line)
+    .attr('fill', 'none')
+    .attr('stroke', '#2980B9')
+    .attr('stroke-width', 3);
 
   newLine.exit().remove();
 
-  // Appends x axis and moves it to bottom
-  canvas.append('g')
-    .attr('transform', 'translate (0, ' + (height - (1.5*margin)) + ')')
-    .attr('class', 'x-axis')
+
+  canvas.selectAll('.x-axis')
     .call(xAxis)
     .selectAll('text')
       .style('text-anchor', 'start')
@@ -312,9 +310,7 @@ function updateChart(measurementArray) {
         return 'rotate(75) translate(10, -4)';
       });
 
-  // Appends y axis
-  canvas.append('g')
-    .attr('class', 'y-axis')
+  canvas.selectAll('.y-axis')
     .call(yAxis);
 
   var circle = canvas.selectAll('circle')
