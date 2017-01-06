@@ -28,7 +28,9 @@ var displayMeasurements = function (snapshot) {
     parsedMeasurements.push(measurements[measurementId]);
   });
 
-  buildChart(parsedMeasurements);
+  measurementArray = parsedMeasurements;
+  buildChart(measurementArray);
+  console.log('measurement array', measurementArray);
 };
 firebaseRef.child('measurements').once('value', displayMeasurements);
 
@@ -53,7 +55,7 @@ $('#measurement-entry').on('submit', function (e) {
     Object.keys(measurements).forEach(function (measurementId) {
       parsedMeasurements.push(measurements[measurementId]);
     });
-    console.log(parsedMeasurements);
-    updateChart(parsedMeasurements);
+    measurementArray = parsedMeasurements;
+    updateChart(measurementArray);
   });
 });
