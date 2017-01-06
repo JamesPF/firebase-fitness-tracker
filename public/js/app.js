@@ -41,6 +41,7 @@ var div = d3.select('#chart')
   .attr('class', 'tooltip')
   .style('opacity', 0);
 
+// DRAW CHART WHEN DATA LOADS
 function buildChart (measurementArray) {
   console.log('chart file', measurementArray);
   // Sort measurementArray in chronological order
@@ -73,6 +74,8 @@ function buildChart (measurementArray) {
   var yAxis = d3.axisLeft()
     .scale(y)
     .ticks(d3.max(measurementArray, function (d) {
+      // Create a way to determine the difference between the largest and smallest numbers
+      // If it exceeds a certain amount, change the tick intervals
       return d.weight/10;
     }))
     .tickSizeInner(-(width - (3.5 * margin)));
@@ -216,6 +219,7 @@ function buildChart (measurementArray) {
       // });
 };
 
+// UPDATE CHART
 function updateChart(measurementArray) {
   console.log('chart update', measurementArray);
   // Remove previous line and area
@@ -229,7 +233,6 @@ function updateChart(measurementArray) {
 
   // var modalWidth = d3.select('.modal').style('width');
   // Draws graph
-
   var x = d3.scaleTime()
     .domain(d3.extent(measurementArray, function (d) {
       var date = parsedDate(d.date);
@@ -276,7 +279,7 @@ function updateChart(measurementArray) {
     .y(function (d) {return y(d.weight);})
     .curve(d3.curveMonotoneX);
 
-  // Creates the shaded area underneath the line
+  // Updates the shaded area underneath the line
   var newArea = canvas.selectAll('area')
     .data([measurementArray]);
 
@@ -287,7 +290,7 @@ function updateChart(measurementArray) {
 
   newArea.exit().remove();
 
-  // Creates the line
+  // Updates the line
   var newLine = canvas.selectAll('.path')
     .data([measurementArray]);
 
@@ -301,7 +304,7 @@ function updateChart(measurementArray) {
 
   newLine.exit().remove();
 
-
+  // Updates the X axis and aligns 'month' labels
   canvas.selectAll('.x-axis')
     .call(xAxis)
     .selectAll('text')
@@ -310,9 +313,11 @@ function updateChart(measurementArray) {
         return 'rotate(75) translate(10, -4)';
       });
 
+  // Updates the Y axis
   canvas.selectAll('.y-axis')
     .call(yAxis);
 
+  // Updates the measurement points
   var circle = canvas.selectAll('circle')
     .data(measurementArray);
 
