@@ -1,7 +1,3 @@
-var list = $('#measurement-list');
-var form = $('#measurement-entry');
-var updateForm = $('#measurement-update');
-
 // Dimensions and formatting variables
 var height = 550;
 var width = 1200;
@@ -218,6 +214,7 @@ function buildChart (measurementArray) {
         //   });
       // });
 };
+
 
 // UPDATE CHART
 function updateChart(measurementArray) {
