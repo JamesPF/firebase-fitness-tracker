@@ -31,15 +31,17 @@ canvas.append('text')
   .attr('fill', '#222')
   .text('Date');
 
-// Creates div for tooltip
-var div = d3.select('#chart')
-  .append('div')
-  .attr('class', 'tooltip')
-  .style('opacity', 0);
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function (d) {
+    return 'Date: ' + tooltipDate(parsedDate(d.date)) + '<br>Weight: ' + d.weight;
+  });
+
+canvas.call(tip);
 
 // DRAW CHART WHEN DATA LOADS
 function buildChart (measurementArray) {
-  console.log('chart file', measurementArray);
   // Sort measurementArray in chronological order
   measurementArray.sort(function (a, b) {
     return new Date(a.date) - new Date(b.date);
@@ -75,7 +77,6 @@ function buildChart (measurementArray) {
       return d.weight/10;
     }))
     .tickSizeInner(-(width - (3.5 * margin)));
-
 
   // Generates the fill area beneath the data line
   var area = d3.area()
@@ -144,6 +145,7 @@ function buildChart (measurementArray) {
     .attr('class', 'y-axis')
     .call(yAxis);
 
+  // Creates points
   var circle = canvas.selectAll('circle')
     .data(measurementArray);
 
@@ -161,64 +163,16 @@ function buildChart (measurementArray) {
         var date = parsedDate(d.date);
         return x(date);
       })
-      .attr('cy', function (d) {return y(d.weight);});
+      .attr('cy', function (d) {return y(d.weight);})
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
   circle.exit().remove();
-
-  // Creates points representing data
-  // canvas.selectAll('circle')
-  //   .data(measurementArray)
-  //   .enter()
-  //   .append('circle')
-  //     .attr('fill', '#333')
-  //     .attr('r', 3)
-  //     .attr('cx', function (d) {
-  //       var date = parsedDate(d.date);
-  //       return x(date);
-  //     })
-  //     .attr('cy', function (d) {return y(d.weight);})
-  //     // Displays tooltip
-  //     .on('mouseover', function (d, i) {
-  //       div.transition()
-  //         .duration(500)
-  //         .style('opacity', 0);
-  //       div.transition()
-  //         .duration(200)
-  //         .style('opacity', 0.9);
-  //       div.html(
-  //         '<p>' + d.weight + ' lbs on<br /> ' + tooltipDate(parsedDate(d.date)) + '</p>' +
-  //         '<button class="edit" id="edit-' + (i+1) + '">Edit</button>')
-  //       .style('left', (d3.event.pageX) + 'px')
-  //       .style('top', (d3.event.pageY - 28) + 'px');
-        // Modal appears when 'edit' button is clicked
-        // d3.select('.edit')
-        //   .on('click', function () {
-        //     d3.event.preventDefault();
-        //     modalWidth = parseInt(modalWidth);
-        //     d3.select('#page-overlay')
-        //       .style('display', 'block');
-        //     d3.select('.modal')
-        //       .style('display', 'block')
-        //       .style('left', '50%')
-        //       .style('margin-left', '-' + (modalWidth/1.42) + 'px')
-        //       .attr('id', 'modal-' + (i+1) + '')
-        //       .html(
-        //         '<form class="measurement-form" id="measurement-update">' +
-        //           '<h2>Update Measurement</h2>' +
-        //           '<input type="date" name="date" value="' + d.date + '" /><br>' +
-        //           '<input type="number" name="weight" step="0.1" min="0" value="' + d.weight + '" /><br>' +
-        //           '<input type="hidden" name="id" value="' + d.id + '" />' +
-        //           '<button id="submit" type="submit">Submit</button> <button id="delete" type="button">Delete</button>' +
-        //         '</form>'
-        //       );
-        //   });
-      // });
 };
 
 
 // UPDATE CHART
 function updateChart(measurementArray) {
-  console.log('chart update', measurementArray);
   // Remove previous line and area
   d3.selectAll('path').remove();
   d3.selectAll('circle').remove();
@@ -325,7 +279,9 @@ function updateChart(measurementArray) {
         var date = parsedDate(d.date);
         return x(date);
       })
-      .attr('cy', function (d) {return y(d.weight);});
+      .attr('cy', function (d) {return y(d.weight);})
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
   circle.exit().remove();
 };

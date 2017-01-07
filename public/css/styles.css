@@ -14,15 +14,17 @@ h1 {
   color: #333;
   width: 100%;
   text-align: center;
-  margin-bottom: 40px;
 }
 
-h2 {
+p {
   font-family: "Helvetica", sans-serif;
-  font-size: 2rem;
   color: #333;
   width: 100%;
-  text-align: center;
+  margin-bottom: 0;
+}
+
+button:focus {
+  outline: none;
 }
 
 
@@ -50,8 +52,12 @@ h2 {
 }
 
 .measurement-form {
-  margin-bottom: 60px;
-  min-height: 154px;
+  min-height: 100px;
+  margin-top: 10px;
+}
+
+.measurement-form input[type="date"] {
+  font-size: 0.9rem;
 }
 
 .measurement-form button[type="submit"] {
@@ -157,7 +163,40 @@ h2 {
   opacity: 0.5;
 }
 
-.tooltip {
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  margin-bottom: -1px;
+  /*background: rgba(0, 0, 0, 0.8);*/
+  background: #2980B9;
+  opacity: 0.9;
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 13px;
+  width: 100%;
+  line-height: 1;
+  /*color: rgba(0, 0, 0, 0.8);*/
+  color: #2980B9;
+  opacity: 0.9;
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -3px 0 0 0;
+  top: 100%;
+  left: 0;
+
+/*.tooltip {
   position: absolute;
   text-align: center;
   color: #fff;
@@ -174,7 +213,7 @@ h2 {
 
 .tooltip p {
   margin-bottom: 12px;
-}
+}*/
 
 .edit {
   background: #fff;

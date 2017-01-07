@@ -5,17 +5,13 @@
     <title>Fitness Tracker Weight Monitor</title>
     <link rel="stylesheet" type="text/css" href="/css/vendor/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <script type="text/javascript" src="/js/libs/d3.js"></script>
   </head>
   <body>
     <h1>Fitness Tracker Weight Monitor</h1>
-    <svg id="chart"></svg>
-    <ul id="measurement-list">
-    </ul>
 
     <div class="row">
-      <form class="columns small-centered large-12 medium-12 small-10 callout measurement-form" id="measurement-entry">
-        <h2>Add New Entry</h2>
+      <form class="columns medium-uncentered small-centered large-6 medium-6 small-10 measurement-form" id="measurement-entry">
+        <p><strong>Add New Entry</strong></p>
         <div class="large-4 medium-4 columns">
           <label>Date</label>
           <input type="date" name="date" />
@@ -29,7 +25,10 @@
         </div>
       </form>
     </div>
+    <svg id="chart"></svg>
 
+    <script type="text/javascript" src="/js/libs/d3.js"></script>
+    <script type="text/javascript" src="/js/libs/d3-tip.js"></script>
     <script src="/js/libs/jquery-2.2.2.min.js"></script>
     <script src="/js/libs/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>

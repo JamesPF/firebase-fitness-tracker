@@ -17,7 +17,6 @@ var displayMeasurements = function (snapshot) {
 
   measurementArray = parsedMeasurements;
   buildChart(measurementArray);
-  console.log('measurement array', measurementArray);
 };
 firebaseRef.child('measurements').once('value', displayMeasurements);
 
@@ -31,7 +30,9 @@ $('#measurement-entry').on('submit', function (e) {
   var date = $('[name=date]').val();
   var weight = $('[name=weight]').val();
   var newMeasurement = {date, weight};
-  console.log(newMeasurement);
+
+  $('[name=date]').val('');
+  $('[name=weight]').val('');
 
   firebaseRef.child('measurements').push(newMeasurement);
 
