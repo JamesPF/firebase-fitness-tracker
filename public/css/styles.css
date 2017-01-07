@@ -37,6 +37,34 @@ button:focus {
 
 /* Measurements page */
 /* ----------------- */
+#info-link {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+#info-link:hover {
+  cursor: pointer;
+}
+
+#info-tip {
+  position: absolute;
+  top: 120px;
+  left: 320px;
+  width: 320px;
+  height: 220px;
+  padding: 10px;
+  background: #000;
+  opacity: 0.8;
+  border-radius: 2px;
+  /*display: none;*/
+}
+
+#info-tip p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
 #chart {
   margin-bottom: 50px;
 }
@@ -64,90 +92,6 @@ button:focus {
   margin-top: 24px;
 }
 
-/*.measurement-form, .email-password {
-  display: block;
-  width: 200px;
-  margin: 0 auto;
-  margin-bottom: 80px;
-}*/
-
-/*.measurement-form h2 {
-  margin-bottom: 12px;
-}*/
-
-/*.measurement-form input[type="date"],
-.measurement-form input[type="number"],
-.email-password input[type="email"],
-.email-password input[type="password"] {
-  border: 2px solid #bdc3c7;
-  color: #34495e;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.467;
-  padding: 8px 12px;
-  margin-bottom: 12px;
-  height: 18px;
-  border-radius: 6px;
-  box-shadow: none;
-}*/
-
-/*.measurement-form button,
-.measurement-form input[type="submit"],
-.email-password button,
-.email-password input[type="submit"] {
-  border: 2px solid #bdc3c7;
-  color: #34495e;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.467;
-  padding: 8px 32px;
-  margin-bottom: 12px;
-  height: 42px;
-  border-radius: 6px;
-  box-shadow: none;
-  cursor: pointer;
-}*/
-
-.measurement-form button#delete {
-  background: red;
-  color: white;
-  margin-left: 9px;
-  border: red;
-}
-
-#measurement-update {
-  width: 240px;
-  margin-bottom: 0px;
-}
-
-.below-form {
-  width: 300px;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* Modal */
-#page-overlay {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: 0.5;
-  position: absolute;
-  display: none;
-  top: 0;
-}
-
-.modal {
-  padding: 10px 40px 10px 40px;
-  background: #bed;
-  position: absolute;
-  display: none;
-  top: 100px;
-  width: 260px;
-  border-radius: 8px;
-}
-
 /* Chart */
 .tick line {
   stroke: #888;
@@ -168,21 +112,18 @@ button:focus {
   font-weight: bold;
   padding: 12px;
   margin-bottom: -1px;
-  /*background: rgba(0, 0, 0, 0.8);*/
   background: #2980B9;
   opacity: 0.9;
   color: #fff;
   border-radius: 2px;
 }
 
-/* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
   box-sizing: border-box;
   display: inline;
   font-size: 13px;
   width: 100%;
   line-height: 1;
-  /*color: rgba(0, 0, 0, 0.8);*/
   color: #2980B9;
   opacity: 0.9;
   content: "\25BC";
@@ -190,43 +131,10 @@ button:focus {
   text-align: center;
 }
 
-/* Style northward tooltips differently */
 .d3-tip.n:after {
   margin: -3px 0 0 0;
   top: 100%;
   left: 0;
-
-/*.tooltip {
-  position: absolute;
-  text-align: center;
-  color: #fff;
-  width: 90px;
-  height: 60px;
-  padding: 2px;
-  padding-top: 7px;
-  padding-bottom: 9px;
-  font: 12px sans-serif;
-  background: #2980B9;
-  border: 0px;
-  border-radius: 8px;
-}
-
-.tooltip p {
-  margin-bottom: 12px;
-}*/
-
-.edit {
-  background: #fff;
-  color: #000;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-}
 
 
 /* BEGIN MEDIA QUERIES */

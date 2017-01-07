@@ -11,7 +11,7 @@
 
     <div class="row">
       <form class="columns medium-uncentered small-centered large-6 medium-6 small-10 measurement-form" id="measurement-entry">
-        <p><strong>Add New Entry</strong></p>
+        <p><strong>Add New Entry</strong> - <span id="info-link">(How to Edit & Remove)</span></p>
         <div class="large-4 medium-4 columns">
           <label>Date</label>
           <input type="date" name="date" />
@@ -26,6 +26,18 @@
       </form>
     </div>
     <svg id="chart"></svg>
+
+    <div id="info-tip">
+      <p><strong>How to edit an entry:</strong>
+      <br>
+      In the 'Date' field below, simply select the date that you want to edit, enter the new weight, and click 'Submit'.
+      </p>
+
+      <p><strong>How to remove an entry:</strong>
+      <br>
+      In the 'Date' field under 'Remove Entry', simply select the date that you want to remove and click 'Remove'.
+      </p>
+    </div>
 
     <script type="text/javascript" src="/js/libs/d3.js"></script>
     <script type="text/javascript" src="/js/libs/d3-tip.js"></script>
