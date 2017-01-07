@@ -5,7 +5,7 @@
 
 body {
   position: relative;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 h1 {
@@ -37,6 +37,16 @@ button:focus {
 
 /* Measurements page */
 /* ----------------- */
+#logout {
+  text-align: right;
+  padding-right: 30px;
+  margin-bottom: -20px;
+}
+
+#logout:hover {
+  cursor: pointer;
+}
+
 #info-link {
   font-size: 0.9rem;
   font-style: italic;
@@ -49,9 +59,9 @@ button:focus {
 #info-tip {
   position: absolute;
   top: 140px;
-  left: 320px;
+  left: 23%;
   width: 320px;
-  height: 220px;
+  height: 245px;
   padding: 10px;
   background: #000;
   opacity: 0.8;
@@ -157,7 +167,16 @@ button:focus {
 }
 
 @media screen and (max-width: 639px) {
+  #logout {
+    margin-bottom: 0;
+  }
+
   .measurement-form {
     margin: 0 auto;
+  }
+
+  #info-tip {
+    left: 10%;
+    top: 165px;
   }
 }

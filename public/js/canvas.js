@@ -35,7 +35,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function (d) {
-    return 'Date: ' + tooltipDate(parsedDate(d.date)) + '<br>Weight: ' + d.weight;
+    return 'Date: ' + tooltipDate(parsedDate(d.date)) + '<br>Weight: ' + d.weight + ' lbs';
   });
 
 canvas.call(tip);
@@ -47,8 +47,6 @@ function buildChart (measurementArray) {
     return new Date(a.date) - new Date(b.date);
   });
 
-  // var modalWidth = d3.select('.modal').style('width');
-  // Draws graph
   var x = d3.scaleTime()
     .domain(d3.extent(measurementArray, function (d) {
       var date = parsedDate(d.date);
@@ -182,7 +180,6 @@ function updateChart(measurementArray) {
     return new Date(a.date) - new Date(b.date);
   });
 
-  // var modalWidth = d3.select('.modal').style('width');
   // Draws graph
   var x = d3.scaleTime()
     .domain(d3.extent(measurementArray, function (d) {

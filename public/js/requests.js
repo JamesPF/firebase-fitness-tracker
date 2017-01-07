@@ -21,15 +21,19 @@ var displayMeasurements = function (snapshot) {
 firebaseRef.child('measurements').once('value', displayMeasurements);
 
 
-// NEW MEASUREMENT
+// POST MEASUREMENT
 // --------------------
-// New measurement posted
+// Measurement posted
 $('#measurement-entry').on('submit', function (e) {
   e.preventDefault();
 
   var date = $('[name=date]').val();
   var weight = $('[name=weight]').val();
   var newMeasurement = {date, weight};
+
+  // Search firebase for any item with a matching date
+    // If there's an item, update that item
+    // Else, create a new item
 
   $('[name=date]').val('');
   $('[name=weight]').val('');
@@ -46,4 +50,17 @@ $('#measurement-entry').on('submit', function (e) {
     measurementArray = parsedMeasurements;
     updateChart(measurementArray);
   });
+});
+
+// REMOVE MEASUREMENT
+// --------------------
+$('#remove-entry').on('submit', function (e) {
+  e.preventDefault();
+
+  var date = $('[name=date]').val();
+
+  // Search firebase for any item with a matching date
+    // If there's an item, remove that item
+      // And get all measurements and run updateChart()
+    // Else, do nothing
 });
