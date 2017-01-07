@@ -48,7 +48,7 @@ button:focus {
 
 #info-tip {
   position: absolute;
-  top: 120px;
+  top: 140px;
   left: 320px;
   width: 320px;
   height: 220px;
@@ -56,7 +56,7 @@ button:focus {
   background: #000;
   opacity: 0.8;
   border-radius: 2px;
-  /*display: none;*/
+  display: none;
 }
 
 #info-tip p {
@@ -90,6 +90,11 @@ button:focus {
 
 .measurement-form button[type="submit"] {
   margin-top: 24px;
+}
+
+#remove-entry {
+  float: right;
+  clear: none;
 }
 
 /* Chart */
@@ -135,10 +140,16 @@ button:focus {
   margin: -3px 0 0 0;
   top: 100%;
   left: 0;
-
+}
 
 /* BEGIN MEDIA QUERIES */
 /* ------------------- */
+@media screen and (max-width: 1023px) {
+  #remove-entry {
+    float: none;
+  }
+}
+
 @media screen and (max-width: 767px) {
   h1 {
     font-size: 2rem;
@@ -147,8 +158,6 @@ button:focus {
 
 @media screen and (max-width: 639px) {
   .measurement-form {
-    height: 320px;
     margin: 0 auto;
-    margin-bottom: 60px;
   }
 }

@@ -9,21 +9,36 @@
   <body>
     <h1>Fitness Tracker Weight Monitor</h1>
 
-    <div class="row">
-      <form class="columns medium-uncentered small-centered large-6 medium-6 small-10 measurement-form" id="measurement-entry">
-        <p><strong>Add New Entry</strong> - <span id="info-link">(How to Edit & Remove)</span></p>
-        <div class="large-4 medium-4 columns">
-          <label>Date</label>
-          <input type="date" name="date" />
-        </div>
-        <div class="large-4 medium-4 columns">
-          <label>Weight</label>
-          <input type="number" name="weight" step="0.1" min="0" />
-        </div>
-        <div class="large-4 medium-4 columns">
-          <button class="button success expanded" type="submit">Submit</button>
-        </div>
-      </form>
+    <div class="row large-collapse">
+      <div class="columns large-uncentered small-centered large-6 small-10 measurement-form" id="measurement-entry">
+        <form>
+          <p><strong>Add New Entry</strong> - <span id="info-link">(How to Edit & Remove)</span></p>
+          <div class="large-4 medium-4 columns">
+            <label>Date</label>
+            <input type="date" name="date" />
+          </div>
+          <div class="large-4 medium-4 columns">
+            <label>Weight</label>
+            <input type="number" name="weight" step="0.1" min="0" />
+          </div>
+          <div class="large-4 medium-4 columns">
+            <button class="button success expanded" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="columns large-uncentered small-centered large-6 medium-8 small-10 measurement-form" id="remove-entry">
+        <form>
+          <p class="large-4 large-offset-4"><strong>Remove Entry</strong></p>
+          <div class="large-4 medium-6 columns large-offset-4">
+            <label>Date</label>
+            <input type="date" name="date" />
+          </div>
+          <div class="large-4 medium-6 columns">
+            <button class="button success expanded" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
     <svg id="chart"></svg>
 
@@ -47,5 +62,6 @@
     <script src="/js/firebase/index.js"></script>
     <script src="/js/requests.js"></script>
     <script src="/js/canvas.js"></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
