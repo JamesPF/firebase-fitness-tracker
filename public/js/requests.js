@@ -32,27 +32,38 @@ $('#measurement-entry').on('submit', function (e) {
   var newMeasurement = {date, weight};
 
   // Search firebase for any item with a matching date
-    // If there's an item, update that item
-    // Else, create a new item
+  firebaseRef.child('measurements/').orderByChild('date').equalTo(date).once('value', function (snapshot) {
+    var res = snapshot.val();
 
-  $('[name=date]').val('');
-  $('[name=weight]').val('');
+    if (res) {
+      var id = Object.keys(res)[0];
+      console.log('yes', id);
 
-  firebaseRef.child('measurements').push(newMeasurement);
-
-  firebaseRef.child('measurements').on('value', function (snapshot) {
-    var measurements = snapshot.val();
-
-    if (newMeasurement) {
-      var parsedMeasurements = [];
-
-      Object.keys(measurements).forEach(function (measurementId) {
-        parsedMeasurements.push(measurements[measurementId]);
+      firebaseRef.child('measurements/' + id).update({
+        weight: newMeasurement.weight
       });
-      measurementArray = parsedMeasurements;
-      updateChart(measurementArray);
-      newMeasurement = undefined;
+    } else {
+      console.log('add new entry', newMeasurement);
+      firebaseRef.child('measurements').push(newMeasurement);
     }
+
+    $('[name=date]').val('');
+    $('[name=weight]').val('');
+
+    firebaseRef.child('measurements').on('value', function (snapshot) {
+      var measurements = snapshot.val();
+
+      if (newMeasurement) {
+        var parsedMeasurements = [];
+
+        Object.keys(measurements).forEach(function (measurementId) {
+          parsedMeasurements.push(measurements[measurementId]);
+        });
+        measurementArray = parsedMeasurements;
+        updateChart(measurementArray);
+        newMeasurement = undefined;
+      }
+    });
   });
 });
 
@@ -84,7 +95,6 @@ $('#remove-entry').on('submit', function (e) {
 
         date = '';
         $('[name=remove]').val('');
-        clicked = false;
       });
     }
   });
