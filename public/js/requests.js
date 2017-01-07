@@ -21,7 +21,7 @@ var displayMeasurements = function (snapshot) {
 firebaseRef.child('measurements').once('value', displayMeasurements);
 
 
-// POST MEASUREMENT
+// ADD OR UPDATE MEASUREMENT
 // --------------------
 // Measurement posted
 $('#measurement-entry').on('submit', function (e) {
