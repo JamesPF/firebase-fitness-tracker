@@ -1,7 +1,6 @@
-var measurementArray =[];
-
 // Get Firebase reference
 var firebaseRef = firebase.database().ref();
+var measurementArray =[];
 
 
 // ON LOAD
@@ -37,13 +36,11 @@ $('#measurement-entry').on('submit', function (e) {
 
     if (res) {
       var id = Object.keys(res)[0];
-      console.log('yes', id);
 
       firebaseRef.child('measurements/' + id).update({
         weight: newMeasurement.weight
       });
     } else {
-      console.log('add new entry', newMeasurement);
       firebaseRef.child('measurements').push(newMeasurement);
     }
 
@@ -59,6 +56,7 @@ $('#measurement-entry').on('submit', function (e) {
         Object.keys(measurements).forEach(function (measurementId) {
           parsedMeasurements.push(measurements[measurementId]);
         });
+
         measurementArray = parsedMeasurements;
         updateChart(measurementArray);
         newMeasurement = undefined;
@@ -66,6 +64,7 @@ $('#measurement-entry').on('submit', function (e) {
     });
   });
 });
+
 
 // REMOVE MEASUREMENT
 // --------------------

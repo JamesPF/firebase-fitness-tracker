@@ -27,26 +27,6 @@ button:focus {
   outline: none;
 }
 
-
-/* Sign in page and log in page */
-/* ---------------------------- */
-.sign-in-form {
-  margin: 0 auto;
-}
-
-
-/* Measurements page */
-/* ----------------- */
-#logout {
-  text-align: right;
-  padding-right: 30px;
-  margin-bottom: -20px;
-}
-
-#logout:hover {
-  cursor: pointer;
-}
-
 #info-link {
   font-size: 0.9rem;
   font-style: italic;
@@ -167,10 +147,6 @@ button:focus {
 }
 
 @media screen and (max-width: 639px) {
-  #logout {
-    margin-bottom: 0;
-  }
-
   .measurement-form {
     margin: 0 auto;
   }
