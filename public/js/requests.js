@@ -28,6 +28,11 @@ $('#measurement-entry').on('submit', function (e) {
 
   var date = $('[name=date]').val();
   var weight = $('[name=weight]').val();
+
+  if (!date || !weight) {
+    return;
+  }
+
   var newMeasurement = {date, weight};
 
   // Search firebase for any item with a matching date
